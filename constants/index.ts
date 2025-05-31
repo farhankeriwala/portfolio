@@ -45,27 +45,51 @@ export const socialMediaItems: SocialMediaItem[] = [
     },
 ]
 
-export const heroCodeBlockCode = `import React from 'react';
-import {Separator} from "@/components/ui/separator";
-import Image from "next/image";
-
-const Home = () => {
-    return (
-        <section className={"container"}>
-            <div className={"w-full flex flex-col"}>
-                <h1 className={"heading"}>Farhan Keriwala</h1>
-                <Image src={'/assets/images/profile.png'} alt={"profile"} width={50} height={50} className={"object-contain"}/>
-                <h2 className={"font-bold text-6xl"}>BSc Computer Science Student</h2>
-                <div className={"flex items-center space-x-8"}>
-                    <h3 className={"font-semiBold text-xl text-neutral-950"}>Upcoming Software Engineer</h3>
-                    <Separator/>
-                    <h3 className={"font-semiBold text-xl text-neutral-950"}>Aspiring Quantum Analyst</h3>
-                    <Separator/>
-                    <h3 className={"font-semiBold text-xl text-neutral-950"}>Freelance Web Developer</h3>
-                </div>
-            </div>
-        </section>
-    );
+export const typescriptCode = `type WebDeveloper = {
+  name: string;
+  frameworks: string[];
+  currentFocus: string;
 };
 
-export default Home;`
+const farhan: WebDeveloper = {
+  name: "Farhan Keriwala",
+  frameworks: ["Next.js", "Tailwind CSS", "ShadCN UI", "Supabase"],
+  currentFocus: "Building full-stack SaaS platforms for EdTech and Fintech",
+};
+
+console.log(\`🚀 Meet \${farhan.name} – crafting seamless user experiences with modern web tools.\`);
+`;
+
+export const javaCode = `public class SoftwareEngineer {
+    private String name = "Farhan Keriwala";
+    private String[] principles = {
+        "Object-Oriented Design",
+        "Version Control (Git)",
+        "Clean Code & Testing",
+        "Agile & DevOps Practices"
+    };
+
+    public void profile() {
+        System.out.println("🛠️ " + name + " – grounded in software engineering principles and scalable system design.");
+    }
+
+    public static void main(String[] args) {
+        new SoftwareEngineer().profile();
+    }
+}
+`;
+
+export const pythonCode = `class MLPractitioner:
+    def __init__(self):
+        self.name = "Farhan Keriwala"
+        self.skills = ["Pandas", "NumPy", "PyTorch", "Scikit-Learn"]
+        self.projects = ["Stock Sentiment LSTM", "News-Driven Forecasting", "Model Evaluation Pipelines"]
+
+    def introduce(self):
+        print(f"🤖 {self.name} applies machine learning to real-world financial data and AI-based insights.")
+
+if __name__ == "__main__":
+    dev = MLPractitioner()
+    dev.introduce()
+`;
+

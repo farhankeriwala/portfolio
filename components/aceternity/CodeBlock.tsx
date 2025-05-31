@@ -1,8 +1,9 @@
 "use client";
+
 import React from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { atomDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { IconCheck, IconCopy } from "@tabler/icons-react";
+import {Prism as SyntaxHighlighter} from "react-syntax-highlighter";
+import {atomDark} from "react-syntax-highlighter/dist/cjs/styles/prism";
+import {IconCheck, IconCopy} from "@tabler/icons-react";
 
 type CodeBlockProps = {
     language: string;
@@ -57,15 +58,16 @@ export const CodeBlock = ({
         <div className="relative w-full rounded-lg bg-slate-900 p-4 font-mono text-sm">
             <div className="flex flex-col gap-2">
                 {tabsExist && (
-                    <div className="flex  overflow-x-auto">
+                    <div className="flex overflow-x-auto space-x-4 my-1">
                         {tabs.map((tab, index) => (
                             <button
                                 key={index}
                                 onClick={() => setActiveTab(index)}
-                                className={`px-3 !py-2 text-xs transition-colors font-sans ${
+                                className={`relative px-3 py-2 text-xs font-sans rounded-md transition-all duration-200
+                  ${
                                     activeTab === index
-                                        ? "text-white"
-                                        : "text-zinc-400 hover:text-zinc-200"
+                                        ? "text-white bg-slate-800"
+                                        : "text-zinc-400 hover:text-zinc-100 hover:bg-slate-700 hover:shadow-sm"
                                 }`}
                             >
                                 {tab.name}
@@ -73,6 +75,7 @@ export const CodeBlock = ({
                         ))}
                     </div>
                 )}
+
                 {!tabsExist && filename && (
                     <div className="flex justify-between items-center py-2">
                         <div className="text-xs text-zinc-400">{filename}</div>
@@ -80,11 +83,12 @@ export const CodeBlock = ({
                             onClick={copyToClipboard}
                             className="flex items-center gap-1 text-xs text-zinc-400 hover:text-zinc-200 transition-colors font-sans"
                         >
-                            {copied ? <IconCheck size={14} /> : <IconCopy size={14} />}
+                            {copied ? <IconCheck size={14}/> : <IconCopy size={14}/>}
                         </button>
                     </div>
                 )}
             </div>
+
             <SyntaxHighlighter
                 language={activeLanguage}
                 style={atomDark}
@@ -92,10 +96,10 @@ export const CodeBlock = ({
                     margin: 0,
                     padding: 0,
                     background: "transparent",
-                    fontSize: "0.875rem", // text-sm equivalent
+                    fontSize: "0.875rem",
                 }}
-                wrapLines={true}
-                showLineNumbers={true}
+                wrapLines
+                showLineNumbers
                 lineProps={(lineNumber) => ({
                     style: {
                         backgroundColor: activeHighlightLines.includes(lineNumber)
@@ -103,6 +107,7 @@ export const CodeBlock = ({
                             : "transparent",
                         display: "block",
                         width: "100%",
+                        lineHeight: "1.75", // Increased line spacing here
                     },
                 })}
                 PreTag="div"

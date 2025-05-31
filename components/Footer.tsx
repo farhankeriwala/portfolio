@@ -6,6 +6,7 @@ import {usePathname} from "next/navigation";
 import {socialMediaItems} from "@/constants";
 import Image from "next/image";
 import {ThemeToggle} from "@/components/ThemeToggle";
+import {Tooltip, TooltipTrigger, TooltipContent} from "@/components/ui/tooltip";
 
 
 const Footer = () => {
@@ -28,10 +29,17 @@ const Footer = () => {
                                         {socialMediaItems.map((item: SocialMediaItem) => (<Link
                                             href={item.url}
                                             key={item.label}
-                                            className={"hover:scale-105"}
+                                            className={"hover:scale-105 cursor-pointer"}
                                             target="_blank"
                                         >
-                                            <Image src={item.icon} alt={item.label} width={28} height={28}/>
+                                            <Tooltip delayDuration={200}>
+                                                <TooltipTrigger className={"cursor-pointer"}>
+                                                    <Image src={item.icon} alt={item.label} width={28} height={28}/>
+                                                </TooltipTrigger>
+                                                <TooltipContent>
+                                                    {item.label}
+                                                </TooltipContent>
+                                            </Tooltip>
                                         </Link>))}
                                         <ThemeToggle/>
                                     </div>
