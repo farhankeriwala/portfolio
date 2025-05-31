@@ -8,6 +8,14 @@ const nextConfig: NextConfig = {
                 protocol: "https",
                 hostname: "github-readme-streak-stats.herokuapp.com",
             },
+            {
+                protocol: "https",
+                hostname: "cdn.sanity.io",
+            },
+            {
+                protocol: "https",
+                hostname: "api.microlink.io",
+            },
         ],
         dangerouslyAllowSVG: true,
     },

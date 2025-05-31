@@ -4,7 +4,7 @@ import { bricolageGrotesque } from "@/fonts/bricolageGrotesque";
 const H4 = ({ children }: { children: ReactNode }) => {
     return (
         <h4
-            className={`scroll-m-20 text-lg sm:text-xl font-semibold tracking-tight text-zinc-800 dark:text-zinc-100 ${bricolageGrotesque.className}`}
+            className={`scroll-m-20 text-lg sm:text-xl font-semibold tracking-tight text-zinc-800 dark:text-zinc-100`}
         >
             {children}
         </h4>
