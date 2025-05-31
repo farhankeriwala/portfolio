@@ -1,9 +1,9 @@
 import type {Metadata} from "next";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import {karla} from "@/fonts/karla";
-import {ThemeProvider} from "@/components/ThemeProvider";
+import {ThemeProvider} from "@/components/theme-provider/ThemeProvider";
 
 
 export const metadata: Metadata = {

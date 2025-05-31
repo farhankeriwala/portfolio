@@ -18,7 +18,7 @@ import {
 
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import {bricolageGrotesque} from "@/fonts/bricolageGrotesque";
+import Image from "next/image";
 
 const stack = [
     {
@@ -60,16 +60,19 @@ const stack = [
 export const TechStackSection = () => {
     return (
         <section id="tech-stack" className="relative py-24 px-6 lg:px-12 overflow-hidden">
-            {/* Soft background blobs */}
+            {/* Background blobs */}
             <div className="absolute inset-0 z-0 blur-3xl opacity-10 pointer-events-none">
                 <div className="w-80 h-80 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full absolute top-10 left-10" />
                 <div className="w-96 h-96 bg-gradient-to-bl from-blue-400 to-sky-500 rounded-full absolute bottom-10 right-10" />
             </div>
 
-            <div className="max-w-5xl mx-auto text-center relative z-10">
-                <h2 className={`text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-zinc-100 mb-6`}>
-                    🧰 My Tech Stack
-                </h2>
+            <div className="max-w-7xl mx-auto text-center relative z-10">
+                <div className="flex justify-center items-center gap-4 md:gap-6 mb-6">
+                    <Image src="/assets/icons/code.svg" alt="code icon" width={75} height={75} />
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-zinc-100">
+                        My Tech Stack
+                    </h2>
+                </div>
                 <p className="text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto mb-14 text-lg">
                     A curated toolkit that powers my development from frontend to backend, ML to DevOps.
                 </p>
@@ -84,8 +87,8 @@ export const TechStackSection = () => {
                             viewport={{ once: true }}
                             className="h-full"
                         >
-                            <Card className="relative h-full flex flex-col bg-white/10 dark:bg-zinc-900/30 border border-white/10 dark:border-white/10 backdrop-blur-xl rounded-2xl hover:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05)] transition-all duration-300 hover:scale-[1.015] hover:shadow-xl hover:ring-1 hover:ring-white/10 dark:hover:ring-zinc-600/30">
-                                <CardContent className="flex-1 p-6 flex flex-col gap-4">
+                            <Card className="relative h-full flex flex-col bg-gradient-to-br from-white/10 to-white/5 dark:from-zinc-900/30 dark:to-zinc-800/20 border border-white/10 dark:border-white/10 backdrop-blur-lg rounded-2xl transition-all duration-300 hover:scale-[1.015] hover:shadow-md">
+                                <CardContent className="flex-1 p-6 flex flex-col gap-6">
                                     <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight">
                                         {group.title}
                                     </h3>
@@ -94,7 +97,7 @@ export const TechStackSection = () => {
                                         {group.items.map((item) => (
                                             <div
                                                 key={item.name}
-                                                className="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md font-medium text-zinc-800 dark:text-zinc-100 bg-zinc-200/50 dark:bg-zinc-700/40 hover:bg-zinc-300/60 dark:hover:bg-zinc-600/50 transition-all"
+                                                className="flex items-center gap-2 text-sm px-3 py-1.5 rounded-md font-medium text-zinc-800 dark:text-zinc-100 bg-white/60 dark:bg-zinc-700/40 hover:bg-white/80 dark:hover:bg-zinc-600/50 transition-all shadow-sm"
                                             >
                                                 {item.icon}
                                                 {item.name}

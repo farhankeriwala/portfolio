@@ -2,11 +2,11 @@
 
 import React from "react";
 import {CodeBlock} from "@/components/aceternity/CodeBlock";
-import MyStatistics from "@/components/MyStatistics";
+import MyStatistics from "@/components/landing-page/MyStatistics";
 import {javaCode, pythonCode, typescriptCode} from "@/constants";
-import {TechStackSection} from "@/components/TechStack";
-import {GitHubStats} from "@/components/GithubStats";
-import {Testimonials} from "@/components/Testimonials";
+import {TechStackSection} from "@/components/landing-page/TechStack";
+import {GitHubStats} from "@/components/landing-page/GithubStats";
+import {Testimonials} from "@/components/landing-page/Testimonials";
 
 const Page = () => {
 

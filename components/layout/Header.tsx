@@ -25,7 +25,7 @@ const Header: React.FC = () => {
         <header className="sticky top-0 z-50 w-full bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md">
             <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:py-6 lg:px-8">
                 {/* Logo */}
-                <Link href="/" className="-m-1.5 p-1.5">
+                <Link href="/public" className="-m-1.5 p-1.5">
                     <h1
                         className={`${bricolageGrotesque.className} text-4xl font-semibold text-zinc-900 dark:text-zinc-100`}
                     >
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
                             <SheetContent>
                                 <SheetHeader>
                                     <SheetTitle>
-                                        <Link href="/" className="-m-1.5 p-1.5">
+                                        <Link href="/public" className="-m-1.5 p-1.5">
                                             <h1
                                                 className={`${bricolageGrotesque.className} text-4xl font-semibold text-zinc-900 dark:text-zinc-100`}
                                             >

@@ -5,7 +5,7 @@ import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {socialMediaItems} from "@/constants";
 import Image from "next/image";
-import {ThemeToggle} from "@/components/ThemeToggle";
+import {ThemeToggle} from "@/components/theme-provider/ThemeToggle";
 import {Tooltip, TooltipTrigger, TooltipContent} from "@/components/ui/tooltip";
 
 
