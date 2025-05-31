@@ -4,6 +4,9 @@ import React from "react";
 import {CodeBlock} from "@/components/aceternity/CodeBlock";
 import MyStatistics from "@/components/MyStatistics";
 import {javaCode, pythonCode, typescriptCode} from "@/constants";
+import {TechStackSection} from "@/components/TechStack";
+import {GitHubStats} from "@/components/GithubStats";
+import {Testimonials} from "@/components/Testimonials";
 
 const Page = () => {
 
@@ -44,6 +47,9 @@ const Page = () => {
                 />
             </div>
             <MyStatistics/>
+            <TechStackSection/>
+            <GitHubStats/>
+            {/*<Testimonials/>*/}
         </main>
     );
 };

@@ -1,10 +1,10 @@
 "use client";
 
-import { navItems, socialMediaItems } from "@/constants";
-import Image from "next/image";
-import Link from "next/link";
 import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { IconMenu2 } from "@tabler/icons-react";
 import {
     Sheet,
     SheetContent,
@@ -14,107 +14,117 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
-import { IconMenu2 } from "@tabler/icons-react";
+import { navItems, socialMediaItems } from "@/constants";
 import { bricolageGrotesque } from "@/fonts/bricolageGrotesque";
 
 const Header: React.FC = () => {
-    const [open, setOpen] = useState<boolean>(false);
+    const [open, setOpen] = useState(false);
     const path = usePathname();
 
     return (
-        <header className="container w-full sticky top-0 left-0 z-50 bg-opacity-25 bg-white dark:bg-zinc-950 backdrop-blur-md backdrop-filter">
-            <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-                <div className="flex lg:flex-1">
-                    <Link href="/" className="-m-1.5 p-1.5">
-                        <span className="sr-only">FGK</span>
-                        <h1
-                            className={`${bricolageGrotesque.className} font-medium text-center text-zinc-900 dark:text-zinc-100 text-5xl`}
-                        >
-                            FGK
-                        </h1>
-                    </Link>
-                </div>
-                <div className="hidden md:flex items-center space-x-2 md:space-x-4">
+        <header className="sticky top-0 z-50 w-full bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md">
+            <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:py-6 lg:px-8">
+                {/* Logo */}
+                <Link href="/" className="-m-1.5 p-1.5">
+                    <h1
+                        className={`${bricolageGrotesque.className} text-4xl font-semibold text-zinc-900 dark:text-zinc-100`}
+                    >
+                        FGK
+                    </h1>
+                </Link>
+
+                {/* Desktop Nav */}
+                <div className="hidden md:flex items-center gap-6">
                     {path !== "/maintenance" &&
                         navItems.map((item: NavItem) => (
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className={`flex items-center space-x-1 md:space-x-2 text-zinc-900 dark:text-zinc-100 text-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors duration-200 px-5 py-1 rounded-lg ${
+                                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-base font-medium transition-colors ${
                                     path === item.href
-                                        ? "bg-zinc-100 dark:bg-zinc-800"
-                                        : ""
+                                        ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                                        : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 hover:dark:bg-zinc-800"
                                 }`}
                             >
                                 <Image
-                                    src={`${item.icon}`}
+                                    src={item.icon}
                                     alt={item.label}
                                     width={20}
                                     height={20}
+                                    className="opacity-80"
                                 />
-                                <span>{item.label}</span>
+                                {item.label}
                             </Link>
                         ))}
                 </div>
 
+                {/* Mobile Menu */}
                 {path !== "/maintenance" && (
-                    <div className="block md:hidden">
+                    <div className="md:hidden">
                         <Sheet open={open} onOpenChange={setOpen}>
                             <SheetTrigger>
-                                <IconMenu2 className="h-6 w-6 text-zinc-900 dark:text-zinc-100 cursor-pointer" />
+                                <IconMenu2 className="h-6 w-6 text-zinc-900 dark:text-zinc-100" />
                             </SheetTrigger>
-                            <SheetContent className="md:hidden">
-                                <SheetHeader className="md:hidden">
-                                    <SheetTitle className="md:hidden">
+                            <SheetContent>
+                                <SheetHeader>
+                                    <SheetTitle>
                                         <Link href="/" className="-m-1.5 p-1.5">
-                                            <span className="sr-only">FGK</span>
                                             <h1
-                                                className={`${bricolageGrotesque.className} font-medium text-center text-zinc-900 dark:text-zinc-100 text-5xl`}
+                                                className={`${bricolageGrotesque.className} text-4xl font-semibold text-zinc-900 dark:text-zinc-100`}
                                             >
                                                 FGK
                                             </h1>
                                         </Link>
                                     </SheetTitle>
-                                    <Separator className="my-6" />
-                                    <div className="mt-2 flex flex-col space-y-2">
-                                        {navItems.map((item: NavItem) => (
-                                            <Link
-                                                onClick={() => setOpen(false)}
-                                                key={item.href}
-                                                href={item.href}
-                                                className={`flex items-center space-x-2 text-zinc-900 dark:text-zinc-100 text-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors duration-200 px-4 py-2 rounded-lg ${
-                                                    path === item.href
-                                                        ? "bg-zinc-100 dark:bg-zinc-800"
-                                                        : ""
-                                                }`}
-                                            >
-                                                <Image
-                                                    src={item.icon}
-                                                    alt={item.label}
-                                                    width={20}
-                                                    height={20}
-                                                />
-                                                <span>{item.label}</span>
-                                            </Link>
-                                        ))}
-                                    </div>
                                 </SheetHeader>
+
+                                <Separator className="my-4" />
+
+                                <div className="flex flex-col gap-2">
+                                    {navItems.map((item: NavItem) => (
+                                        <Link
+                                            key={item.href}
+                                            href={item.href}
+                                            onClick={() => setOpen(false)}
+                                            className={`flex items-center gap-2 rounded-lg px-4 py-2 text-base font-medium transition-colors ${
+                                                path === item.href
+                                                    ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"
+                                                    : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 hover:dark:bg-zinc-800"
+                                            }`}
+                                        >
+                                            <Image
+                                                src={item.icon}
+                                                alt={item.label}
+                                                width={20}
+                                                height={20}
+                                                className="opacity-80"
+                                            />
+                                            {item.label}
+                                        </Link>
+                                    ))}
+                                </div>
+
                                 <Separator className="my-6" />
-                                {socialMediaItems.map((item: SocialMediaItem) => (
-                                    <Link
-                                        key={item.label}
-                                        href={item.url}
-                                        className="flex items-center space-x-2 text-zinc-900 dark:text-zinc-100 text-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 px-4 py-2 rounded-lg"
-                                    >
-                                        <Image
-                                            src={item.icon}
-                                            alt={item.label}
-                                            width={20}
-                                            height={20}
-                                        />
-                                        <span>{item.label}</span>
-                                    </Link>
-                                ))}
+
+                                <div className="flex flex-col gap-2">
+                                    {socialMediaItems.map((item: SocialMediaItem) => (
+                                        <Link
+                                            key={item.label}
+                                            href={item.url}
+                                            className="flex items-center gap-2 rounded-lg px-4 py-2 text-base text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                                        >
+                                            <Image
+                                                src={item.icon}
+                                                alt={item.label}
+                                                width={20}
+                                                height={20}
+                                                className="opacity-80"
+                                            />
+                                            {item.label}
+                                        </Link>
+                                    ))}
+                                </div>
+
                                 <SheetFooter />
                             </SheetContent>
                         </Sheet>
