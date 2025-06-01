@@ -149,3 +149,13 @@
     @apply mx-auto max-w-7xl px-5;
   }
 }
+
+/* global.css */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

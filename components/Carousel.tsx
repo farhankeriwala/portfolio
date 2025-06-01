@@ -1,41 +1,48 @@
 "use client";
 
-import {useState} from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import {urlFor} from "@/lib/sanity/imageUrl";
+import { urlFor } from "@/lib/sanity/imageUrl";
 
 interface CarouselProps {
-    images: { src: string }[];
+    images: { asset: any }[];
 }
 
-export default function Carousel({images}: CarouselProps) {
+export default function Carousel({ images }: CarouselProps) {
     const [current, setCurrent] = useState(0);
+    const refs = useRef<(HTMLDivElement | null)[]>([]);
 
-    const handleNext = () => {
-        setCurrent((prev) => (prev + 1) % images.length);
+    const scrollToIndex = (index: number) => {
+        refs.current[index]?.scrollIntoView({ behavior: "smooth", inline: "center" });
+        setCurrent(index);
     };
 
-    const handlePrevious = () => {
-        setCurrent((prev) => (prev - 1 + images.length) % images.length);
-    };
+    const handleNext = () => scrollToIndex((current + 1) % images.length);
+    const handlePrevious = () => scrollToIndex((current - 1 + images.length) % images.length);
+
+    useEffect(() => {
+        const handleKey = (e: KeyboardEvent) => {
+            if (e.key === "ArrowLeft") handlePrevious();
+            if (e.key === "ArrowRight") handleNext();
+        };
+        window.addEventListener("keydown", handleKey);
+        return () => window.removeEventListener("keydown", handleKey);
+    }, [current]);
 
     return (
         <div className="relative w-full max-w-8xl mx-auto overflow-hidden">
-            <div
-                className="flex transition-transform duration-500"
-                style={{
-                    transform: `translateX(-${current * 100}%)`,
-                }}
-            >
-                {images.map((image: any, index) => (
+            <div className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth no-scrollbar">
+                {images.map((image, index) => (
                     <div
                         key={index}
-                        className="flex-shrink-0 w-full h-[50vw] max-h-[700px] relative"
+                        ref={(el) => (refs.current[index] = el)}
+                        className="flex-shrink-0 w-full snap-center h-[50vw] max-h-[700px] relative"
                     >
                         <Image
                             src={urlFor(image.asset).url()}
-                            alt={''}
+                            alt="Project image"
                             fill
+                            loading="lazy"
                             className="object-contain rounded-xl"
                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 50vw"
                         />
@@ -49,7 +56,7 @@ export default function Carousel({images}: CarouselProps) {
                 onClick={handlePrevious}
                 aria-label="Previous slide"
             >
-                <Image src={"/assets/icons/arrow-left.svg"} alt={"previous"} width={24} height={24}/>
+                <Image src="/assets/icons/arrow-left.svg" alt="previous" width={24} height={24} />
             </button>
 
             <button
@@ -57,7 +64,7 @@ export default function Carousel({images}: CarouselProps) {
                 onClick={handleNext}
                 aria-label="Next slide"
             >
-                <Image src={"/assets/icons/arrow-right.svg"} alt={"next"} width={24} height={24}/>
+                <Image src="/assets/icons/arrow-right.svg" alt="next" width={24} height={24} />
             </button>
 
             {/* Indicators */}
@@ -66,11 +73,9 @@ export default function Carousel({images}: CarouselProps) {
                     <button
                         key={index}
                         className={`w-2 h-2 rounded-full transition ${
-                            current === index
-                                ? "bg-blue-600 scale-125"
-                                : "bg-neutral-300"
+                            current === index ? "bg-blue-600 scale-125" : "bg-neutral-300"
                         }`}
-                        onClick={() => setCurrent(index)}
+                        onClick={() => scrollToIndex(index)}
                         aria-label={`Go to slide ${index + 1}`}
                     />
                 ))}

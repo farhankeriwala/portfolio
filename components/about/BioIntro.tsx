@@ -19,7 +19,7 @@ const BioIntro = () => {
                 className="max-w-4xl mx-auto relative z-10 bg-white/30 dark:bg-zinc-800/20 backdrop-blur-md rounded-2xl p-8 border border-white/10 dark:border-white/10 shadow-md">
                 <div className="flex flex-col items-center space-y-6">
                     <Image
-                        src="/assets/images/farhan-avatar.png"
+                        src="/assets/images/farhan.png"
                         alt="Farhan Keriwala"
                         width={100}
                         height={100}
