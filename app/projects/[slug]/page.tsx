@@ -83,6 +83,7 @@ const Page = async ({params}: { params: Promise<{ slug: string }> }) => {
                 {project?.github && (
                     <section className="space-y-4">
                         <H2>Links</H2>
+                        <p className={"text-xm text-muted-foreground"}>Hover over the following links for a quick preview</p>
                         <div className="grid gap-6 md:grid-cols-2">
                             {project?.url && (
                                 <LinkPreview url={project?.url} quality={100} width={400} height={200}>

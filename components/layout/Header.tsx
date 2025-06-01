@@ -85,7 +85,7 @@ const Header: React.FC = () => {
                 {path !== "/maintenance" && (
                     <div className="md:hidden">
                         <Sheet open={open} onOpenChange={setOpen}>
-                            <SheetTrigger>
+                            <SheetTrigger className={"cursor-pointer"}>
                                 <IconMenu2 className="h-6 w-6 text-zinc-900 dark:text-zinc-100" />
                             </SheetTrigger>
                             <SheetContent>
