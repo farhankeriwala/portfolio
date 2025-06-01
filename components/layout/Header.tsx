@@ -63,7 +63,7 @@ const Header: React.FC = () => {
                 </Link>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex items-center gap-6">
+                <div className="hidden md:flex items-center gap-4 lg:gap-6">
                     {path !== "/maintenance" &&
                         navItems.map((item: NavItem) => (
                             <Link
