@@ -47,11 +47,11 @@ const nextConfig: NextConfig = {
             //     destination: "/maintenance",
             //     permanent: false,
             // },
-            {
-                source: "/services",
-                destination: "/maintenance",
-                permanent: false,
-            },
+            // {
+            //     source: "/services",
+            //     destination: "/maintenance",
+            //     permanent: false,
+            // },
             // {
             //     source: "/contact",
             //     destination: "/maintenance",

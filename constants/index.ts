@@ -15,11 +15,11 @@ export const navItems: NavItem[] = [
         label: "Projects",
         icon: 'gallery'
     },
-    // {
-    //     href: "/services",
-    //     label: "Services",
-    //     icon: 'settings'
-    // },
+    {
+        href: "/services",
+        label: "Services",
+        icon: 'case'
+    },
     {
         href: "/contact",
         label: "Contact",
