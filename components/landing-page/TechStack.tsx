@@ -24,37 +24,53 @@ const stack = [
     {
         title: "Frontend",
         items: [
-            { name: "React", icon: <IconBrandReact className="h-5 w-5" /> },
-            { name: "Next.js", icon: <IconBrandNextjs className="h-5 w-5" /> },
-            { name: "Vue.js", icon: <IconBrandVue className="h-5 w-5" /> },
-            { name: "Tailwind CSS", icon: <IconBrandTailwind className="h-5 w-5" /> },
+            { name: "React", icon: <Image src={'/assets/icons/react.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "Next.js", icon: <Image src={'/assets/icons/nextjs.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "Vue.js", icon: <Image src={'/assets/icons/vue.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "Tailwind CSS", icon: <Image src={'/assets/icons/tailwind.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "ShadCN UI", icon: <Image src={'/assets/icons/shadcn.png'} alt={'shadcn'} width={20} height={20}/> },
+            { name: "Framer Motion", icon: <Image src={'/assets/icons/framer.svg'} alt={'framer'} width={20} height={20}/> },
+
+
         ],
     },
     {
         title: "Backend",
         items: [
-            { name: "Django", icon: <IconBrandDjango className="h-5 w-5" /> },
-            { name: "Supabase", icon: <IconBrandSupabase className="h-5 w-5" /> },
-            { name: "PostgreSQL", icon: <IconDatabase className="h-5 w-5" /> },
-            { name: "Docker", icon: <IconBrandDocker className="h-5 w-5" /> },
+            { name: "Django", icon: <Image src={'/assets/icons/django.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "Supabase", icon: <Image src={'/assets/icons/supabase.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "PostgreSQL", icon: <Image src={'/assets/icons/postgres.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "Docker", icon: <Image src={'/assets/icons/docker.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "Firebase", icon: <Image src={'/assets/icons/firebase.svg'} alt={'firebase'} width={20} height={20}/> },
+            { name: "Node.js", icon: <Image src={'/assets/icons/nodejs.svg'} alt={'nodejs'} width={20} height={20}/> },
+            { name: "Express.js", icon: <Image src={'/assets/icons/express.svg'} alt={'express'} width={20} height={20}/> },
         ],
     },
     {
         title: "Programming Languages",
         items: [
-            { name: "Python", icon: <IconBrandPython className="h-5 w-5" /> },
-            { name: "JavaScript", icon: <IconBrandJavascript className="h-5 w-5" /> },
-            { name: "TypeScript", icon: <IconBrandTypescript className="h-5 w-5" /> },
-            { name: "C++", icon: <IconBrandCpp className="h-5 w-5" /> },
+            { name: "Python", icon: <Image src={'/assets/icons/python.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "JavaScript", icon: <Image src={'/assets/icons/javascript.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "TypeScript", icon: <Image src={'/assets/icons/typescript.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "C++", icon: <Image src={'/assets/icons/cpp.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "Java", icon: <Image src={'/assets/icons/java.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "SQLite", icon: <Image src={'/assets/icons/sqlite.svg'} alt={'sql'} width={20} height={20}/> },
+
         ],
     },
     {
         title: "Machine Learning / AI",
         items: [
-            { name: "PyTorch", icon: <IconBrain className="h-5 w-5" /> },
+            { name: "PyTorch", icon: <Image src={'/assets/icons/pytorch.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "Tensorflow", icon: <Image src={'/assets/icons/tensorflow.svg'} alt={'java'} width={20} height={20}/> },
+            { name: "NumPy", icon: <Image src={'/assets/icons/numpy.svg'} alt={'java'} width={20} height={20}/> },
             { name: "ML Systems", icon: <IconBrain className="h-5 w-5" /> },
+            { name: "Scikit-Learn", icon: <Image src={'/assets/icons/scikit-learn.svg'} alt={'scikit'} width={20} height={20}/> },
+            { name: "Jupyter", icon: <Image src={'/assets/icons/jupyter.svg'} alt={'jupyter'} width={20} height={20}/> },
+
         ],
     },
+
 ];
 
 export const TechStackSection = () => {
