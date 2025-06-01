@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { IconMenu2 } from "@tabler/icons-react";
+import { useTheme } from "next-themes";
+
 import {
     Sheet,
     SheetContent,
@@ -17,15 +19,42 @@ import { Separator } from "@/components/ui/separator";
 import { navItems, socialMediaItems } from "@/constants";
 import { bricolageGrotesque } from "@/fonts/bricolageGrotesque";
 
+// --- ThemedIcon component to avoid hydration mismatch ---
+const ThemedIcon = ({ icon, label }: { icon: string; label: string }) => {
+    const { theme, systemTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return <div style={{ width: 20, height: 20 }} />;
+    }
+
+    const resolvedTheme = theme === "system" ? systemTheme : theme;
+    const iconSrc = `/assets/icons/${icon}${resolvedTheme === "light" ? "" : "-dark"}.svg`;
+
+    return (
+        <Image
+            src={iconSrc}
+            alt={label}
+            width={20}
+            height={20}
+            className="opacity-80"
+        />
+    );
+};
+
 const Header: React.FC = () => {
     const [open, setOpen] = useState(false);
     const path = usePathname();
 
     return (
-        <header className="sticky top-0 z-50 w-full bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md">
+        <header className="sticky top-0 z-50 w-full bg-white/50 dark:bg-zinc-950/50 backdrop-blur-md">
             <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:py-6 lg:px-8">
                 {/* Logo */}
-                <Link href="/public" className="-m-1.5 p-1.5">
+                <Link href="/" className="-m-1.5 p-1.5">
                     <h1
                         className={`${bricolageGrotesque.className} text-4xl font-semibold text-zinc-900 dark:text-zinc-100`}
                     >
@@ -46,13 +75,7 @@ const Header: React.FC = () => {
                                         : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 hover:dark:bg-zinc-800"
                                 }`}
                             >
-                                <Image
-                                    src={item.icon}
-                                    alt={item.label}
-                                    width={20}
-                                    height={20}
-                                    className="opacity-80"
-                                />
+                                <ThemedIcon icon={item.icon} label={item.label} />
                                 {item.label}
                             </Link>
                         ))}
@@ -92,13 +115,7 @@ const Header: React.FC = () => {
                                                     : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 hover:dark:bg-zinc-800"
                                             }`}
                                         >
-                                            <Image
-                                                src={item.icon}
-                                                alt={item.label}
-                                                width={20}
-                                                height={20}
-                                                className="opacity-80"
-                                            />
+                                            <ThemedIcon icon={item.icon} label={item.label} />
                                             {item.label}
                                         </Link>
                                     ))}

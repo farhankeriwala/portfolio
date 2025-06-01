@@ -2,28 +2,28 @@ export const navItems: NavItem[] = [
     {
         href: "/",
         label: "Home",
-        icon: '/assets/icons/home.svg'
+        icon: 'home'
     },
     {
         href: "/about",
         label: "About",
-        icon: '/assets/icons/user.svg'
+        icon: 'user'
 
     },
     {
         href: "/projects",
         label: "Projects",
-        icon: '/assets/icons/gallery.svg'
+        icon: 'gallery'
     },
     // {
     //     href: "/services",
     //     label: "Services",
-    //     icon: '/assets/icons/settings.svg'
+    //     icon: 'settings'
     // },
     {
         href: "/contact",
         label: "Contact",
-        icon: '/assets/icons/contact.svg'
+        icon: 'contact'
     },
 ]
 
