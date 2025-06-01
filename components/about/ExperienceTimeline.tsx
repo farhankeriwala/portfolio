@@ -6,6 +6,10 @@ import Image from "next/image";
 import {urlFor} from "@/lib/sanity/imageUrl";
 import {SanityDocument} from "next-sanity";
 import H2 from "@/components/typography/headings/H2";
+import Link from "next/link";
+import {IconDownload} from "@tabler/icons-react";
+import { motion } from "framer-motion";
+
 
 const ExperienceTimeline = ({experiences}: { experiences: SanityDocument[] }) => {
     return (
@@ -22,17 +26,38 @@ const ExperienceTimeline = ({experiences}: { experiences: SanityDocument[] }) =>
                 <H2>Experience</H2>
 
                 <div className="relative mt-12">
-                    {/* Vertical line */}
-                    <div className="absolute left-5 top-0 bottom-0 w-px bg-zinc-300 dark:bg-zinc-700"/>
+                    {/* Vertical timeline line */}
+                    <div className="absolute left-5 top-0 bottom-0 w-px bg-zinc-300 dark:bg-zinc-700" />
 
-                    <ul className="space-y-12 pl-10">
+                    <motion.ul
+                        className="space-y-12 pl-10"
+                        initial="hidden"
+                        whileInView="show"
+                        variants={{
+                            hidden: {},
+                            show: {
+                                transition: {
+                                    staggerChildren: 0.2,
+                                },
+                            },
+                        }}
+                        viewport={{ once: true }}
+                    >
                         {experiences?.length ? (
                             experiences.map((exp) => (
-                                <li key={exp._id} className="relative">
+                                <motion.li
+                                    key={exp._id}
+                                    variants={{
+                                        hidden: { opacity: 0, y: 40 },
+                                        show: { opacity: 1, y: 0 },
+                                    }}
+                                    transition={{ duration: 0.5, ease: "easeOut" }}
+                                    className="relative"
+                                >
                                     {/* Timeline dot */}
                                     <div className="absolute left-1 top-3 w-3 h-3 border-2 border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-900 rounded-full z-10" />
 
-                                    {/* Card content */}
+                                    {/* Card */}
                                     <div className="bg-white/30 dark:bg-zinc-800/20 backdrop-blur-md border border-white/10 dark:border-white/10 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all">
                                         <div className="flex items-center gap-4 mb-3">
                                             <Image
@@ -51,42 +76,41 @@ const ExperienceTimeline = ({experiences}: { experiences: SanityDocument[] }) =>
                                                 </p>
                                             </div>
                                         </div>
-
                                         <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2">
                                             {formatSanityDate(exp.startDate)} –{" "}
                                             {exp.endDate ? formatSanityDate(exp.endDate) : "Present"}
                                         </p>
-
                                         <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
                                             {exp.description}
                                         </p>
                                     </div>
-                                </li>
+                                </motion.li>
                             ))
                         ) : (
                             <p className="text-center text-zinc-500 dark:text-zinc-400">
                                 No experience data found.
                             </p>
                         )}
-                    </ul>
-
+                    </motion.ul>
                 </div>
 
-                <div className="flex justify-center mt-16">
-                    <a
+                <motion.div
+                    className="flex justify-center mt-16"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+                    viewport={{ once: true }}
+                >
+                    <Link
                         href="/assets/resume.pdf"
                         download="farhan_keriwala_resume.pdf"
-                        className="inline-flex items-center gap-2 px-5 py-3 text-sm font-medium rounded-xl bg-white/80 dark:bg-zinc-800/30 backdrop-blur-md border border-white/10 dark:border-white/10 text-zinc-900 dark:text-zinc-100 hover:shadow-lg transition-all"
+                        target="_blank"
+                        className="inline-flex items-center gap-2 px-5 py-3 text-base font-medium rounded-xl bg-white/80 dark:bg-zinc-800/30 backdrop-blur-md border border-white/10 dark:border-white/10 text-zinc-900 dark:text-zinc-100 hover:shadow-lg transition-all"
                     >
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path
-                                d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z"/>
-                            <path
-                                d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
-                        </svg>
+                        <IconDownload className="w-6 h-6" />
                         Download Resume
-                    </a>
-                </div>
+                    </Link>
+                </motion.div>
             </div>
         </section>
     );

@@ -10,7 +10,7 @@ const About = async () => {
     const experiences = await getExperience();
 
     return (
-        <div className={""}>
+        <div className={"container"}>
             <H1>About Me</H1>
             <main className={"flex flex-col space-y-12"}>
                 <BioIntro/>
