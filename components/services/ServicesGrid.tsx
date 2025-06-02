@@ -32,7 +32,7 @@ const items = [
     },
     {
         title: "Full-Stack SaaS Platforms",
-        description: "End-to-end development of Software-as-a-Service apps with user auth, subscriptions, dashboards, and analytics.",
+        description: "End-to-end development of SaaS apps with auth, subscriptions, dashboards, analytics and more.",
         header: (
             <div className="relative w-full h-40 md:h-48">
                 <Image
