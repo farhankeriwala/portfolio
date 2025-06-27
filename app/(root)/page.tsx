@@ -5,7 +5,6 @@ import { CodeBlock } from "@/components/aceternity/CodeBlock";
 import MyStatistics from "@/components/landing-page/MyStatistics";
 import { javaCode, pythonCode, typescriptCode } from "@/constants";
 import { TechStackSection } from "@/components/landing-page/TechStack";
-import { GitHubStats } from "@/components/landing-page/GithubStats";
 // import { Testimonials } from "@/components/landing-page/Testimonials";
 
 const Page = () => {
@@ -61,10 +60,6 @@ const Page = () => {
                 <TechStackSection />
             </section>
 
-            {/* 📊 GitHub Activity */}
-            <section className="w-full bg-white dark:bg-zinc-950">
-                <GitHubStats />
-            </section>
 
             {/* ⭐ Testimonials - Optional */}
             {/*
