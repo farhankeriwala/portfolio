@@ -1,33 +1,52 @@
 'use client';
 
 import React from "react";
-import {formatSanityDate} from "@/lib/utils";
+import { formatSanityDate } from "@/lib/utils";
 import Image from "next/image";
-import {urlFor} from "@/lib/sanity/imageUrl";
-import {SanityDocument} from "next-sanity";
+import { urlFor } from "@/lib/sanity/imageUrl";
+import { SanityDocument } from "next-sanity";
 import H2 from "@/components/typography/headings/H2";
 import Link from "next/link";
-import {IconDownload} from "@tabler/icons-react";
+import { IconDownload } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 
-
-const ExperienceTimeline = ({experiences}: { experiences: SanityDocument[] }) => {
+const ExperienceTimeline = ({ experiences }: { experiences: SanityDocument[] }) => {
     return (
         <section className="relative py-24 px-6 lg:px-12 overflow-hidden">
-            {/* Background blobs */}
+            {/* Animated Background blobs */}
             <div className="absolute inset-0 z-0 blur-3xl opacity-10 pointer-events-none">
-                <div
-                    className="w-80 h-80 bg-gradient-to-br from-sky-500 to-blue-500 rounded-full absolute top-10 left-10"/>
-                <div
-                    className="w-96 h-96 bg-gradient-to-tr from-fuchsia-400 to-pink-500 rounded-full absolute bottom-10 right-10"/>
+                <motion.div
+                    className="w-80 h-80 bg-gradient-to-br from-sky-500 to-blue-500 rounded-full absolute top-10 left-10"
+                    animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <motion.div
+                    className="w-96 h-96 bg-gradient-to-tr from-fuchsia-400 to-pink-500 rounded-full absolute bottom-10 right-10"
+                    animate={{ y: [0, 15, 0], x: [0, -10, 0] }}
+                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                />
             </div>
 
             <div className="max-w-4xl mx-auto relative z-10">
-                <H2>Experience</H2>
+                {/* Animated Heading */}
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                >
+                    <H2>Experience</H2>
+                </motion.div>
 
                 <div className="relative mt-12">
-                    {/* Vertical timeline line */}
-                    <div className="absolute left-5 top-0 bottom-0 w-px bg-zinc-300 dark:bg-zinc-700" />
+                    {/* Animated Vertical timeline line */}
+                    <motion.div
+                        className="absolute left-5 top-0 bottom-0 w-px bg-zinc-300 dark:bg-zinc-700"
+                        initial={{ height: 0 }}
+                        whileInView={{ height: "100%" }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                    />
 
                     <motion.ul
                         className="space-y-12 pl-10"
@@ -51,15 +70,18 @@ const ExperienceTimeline = ({experiences}: { experiences: SanityDocument[] }) =>
                                         hidden: { opacity: 0, y: 40 },
                                         show: { opacity: 1, y: 0 },
                                     }}
-                                    transition={{ duration: 0.5, ease: "easeOut" }}
+                                    transition={{ duration: 0.6, ease: "easeInOut" }}
                                     className="relative"
                                 >
                                     {/* Timeline dot */}
                                     <div className="absolute left-1 top-3 w-3 h-3 border-2 border-zinc-400 dark:border-zinc-600 bg-white dark:bg-zinc-900 rounded-full z-10" />
 
-                                    {/* Card */}
-                                    <div className="bg-white/30 dark:bg-zinc-800/20 backdrop-blur-md border border-white/10 dark:border-white/10 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all">
-                                        <div className="flex items-center gap-4 mb-3">
+                                    {/* Animated Card */}
+                                    <motion.div
+                                        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                                        className="bg-white/30 dark:bg-zinc-800/20 backdrop-blur-md border border-white/10 dark:border-white/10 rounded-2xl p-8 sm:p-10 shadow-md hover:shadow-lg transition-all"
+                                    >
+                                        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-3">
                                             <Image
                                                 src={urlFor(exp.companyLogo.asset).url()}
                                                 alt={exp.company}
@@ -68,7 +90,7 @@ const ExperienceTimeline = ({experiences}: { experiences: SanityDocument[] }) =>
                                                 className="rounded-md object-contain"
                                             />
                                             <div>
-                                                <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                                                <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                                                     {exp.position}
                                                 </h3>
                                                 <p className="text-sm text-zinc-500 dark:text-zinc-400">
@@ -76,14 +98,17 @@ const ExperienceTimeline = ({experiences}: { experiences: SanityDocument[] }) =>
                                                 </p>
                                             </div>
                                         </div>
-                                        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-2">
+
+                                        <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mb-2">
                                             {formatSanityDate(exp.startDate)} –{" "}
                                             {exp.endDate ? formatSanityDate(exp.endDate) : "Present"}
                                         </p>
+
                                         <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
                                             {exp.description}
                                         </p>
-                                    </div>
+                                    </motion.div>
+
                                 </motion.li>
                             ))
                         ) : (
@@ -94,6 +119,7 @@ const ExperienceTimeline = ({experiences}: { experiences: SanityDocument[] }) =>
                     </motion.ul>
                 </div>
 
+                {/* Animated Resume Button */}
                 <motion.div
                     className="flex justify-center mt-16"
                     initial={{ opacity: 0, y: 40 }}

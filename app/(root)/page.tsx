@@ -50,18 +50,14 @@ const Page = () => {
                 </div>
             </section>
 
-            {/* 📈 Statistics */}
             <section className="w-full bg-white dark:bg-zinc-950">
                 <MyStatistics />
             </section>
 
-            {/* 🧰 Tech Stack */}
             <section className="w-full bg-white dark:bg-zinc-950">
                 <TechStackSection />
             </section>
 
-
-            {/* ⭐ Testimonials - Optional */}
             {/*
             <section className="w-full bg-zinc-50 dark:bg-zinc-900">
                 <Testimonials />
