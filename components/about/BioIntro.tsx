@@ -16,7 +16,7 @@ const BioIntro = () => {
             </div>
 
             {/* Main Card */}
-            <div className="relative z-10 max-w-4xl mx-auto bg-white/30 dark:bg-zinc-900/30 backdrop-blur-lg rounded-2xl shadow-xl border border-white/10 dark:border-white/10 p-8 md:p-12">
+            <div className="relative z-10 max-w-4xl mx-auto bg-white/30 dark:bg-zinc-900/30 backdrop-blur-lg rounded-2xl shadow-xl  p-8 md:p-12">
                 <div className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-8 items-center">
                     {/* Animated Avatar */}
                     <motion.div
