@@ -19,7 +19,7 @@ const Page: React.FC = () => {
                 <H2>1. Introduction</H2>
                 <p className="text-base text-zinc-700 dark:text-white">
                     Farhan Keriwala respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how information submitted through the portfolio website at{' '}
-                    <Link href="https://www.farhankeriwala.com" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://www.farhankeriwa la.com" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
                         www.farhankeriwala.com
                     </Link>{' '}
                     is collected, used, and safeguarded.
