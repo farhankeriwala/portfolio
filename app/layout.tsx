@@ -6,6 +6,7 @@ import {karla} from "@/fonts/karla";
 import {ThemeProvider} from "@/components/theme-provider/ThemeProvider";
 import {ThemeToggle} from "@/components/theme-provider/ThemeToggle";
 import SEOJsonLd from "@/components/SEOJsonLd";
+import { Analytics } from "@vercel/analytics/next"
 
 
 export const metadata: Metadata = {
@@ -89,6 +90,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-grow container max-w-7xl mx-auto">
             {children}
+            <Analytics/>
             <div className="fixed bottom-8 right-8 z-50">
               <ThemeToggle />
             </div>
