@@ -10,6 +10,40 @@ import Image from "next/image";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 import H2 from "@/components/typography/headings/H2";
 import H1 from "@/components/typography/headings/H1";
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+    const projects = await getProjects();
+    const project = projects?.find((p) => p.slug.current === params.slug);
+
+    if (!project) {
+        return {
+            title: "Project Not Found | Farhan Keriwala",
+            description: "This project does not exist.",
+        };
+    }
+
+    return {
+        title: `${project.title} | Farhan Keriwala`,
+        description: project.description ?? project.summary ?? "Project case study",
+        alternates: { canonical: `/projects/${params.slug}` }, // will be resolved with metadataBase from root layout
+        openGraph: {
+            title: project.title,
+            description: project.description ?? project.summary,
+            url: `https://farhankeriwala.com/projects/${params.slug}`,
+            images: [
+                { url: project.ogImage ?? `/og/projects/${params.slug}.png`, width: 1200, height: 630 },
+            ],
+            type: "article",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: project.title,
+            description: project.description ?? project.summary,
+            images: [project.ogImage ?? `/og/projects/${params.slug}.png`],
+        },
+    };
+}
 
 interface Feature {
     name: string;
