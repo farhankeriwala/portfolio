@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   applicationName: "Farhan Keriwala",
   title: {
     default: "Farhan Keriwala",
-    template: "%s | Farhan Keriwala",
+    template: "%s",
   },
   description: "Software portfolio of Farhan Keriwala — full-stack developer and MSc Computational Science student.",
   keywords: [
