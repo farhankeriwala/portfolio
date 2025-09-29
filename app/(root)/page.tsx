@@ -16,7 +16,7 @@ const Page = () => {
                     👋🏼 Hey, I’m Farhan
                 </h1>
                 <p className="text-lg md:text-xl max-w-2xl mx-auto text-zinc-600 dark:text-zinc-400">
-                    I'm a full-stack developer building modern, scalable SaaS products using Next.js, Django, and AI — with a focus on Fintech, EdTech, and Machine Learning.
+                    Software developer building modern SaaS with Next.js and AI — currently pursuing an MSc in Computational Finance at King’s College London.
                 </p>
             </section>
 
@@ -57,12 +57,6 @@ const Page = () => {
             <section className="w-full bg-white dark:bg-zinc-950">
                 <TechStackSection />
             </section>
-
-            {/*
-            <section className="w-full bg-zinc-50 dark:bg-zinc-900">
-                <Testimonials />
-            </section>
-            */}
         </main>
     );
 };

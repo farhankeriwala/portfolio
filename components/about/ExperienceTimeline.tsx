@@ -5,7 +5,6 @@ import { formatSanityDate } from "@/lib/utils";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity/imageUrl";
 import { SanityDocument } from "next-sanity";
-import H2 from "@/components/typography/headings/H2";
 import Link from "next/link";
 import { IconDownload } from "@tabler/icons-react";
 import { motion } from "framer-motion";
@@ -35,7 +34,7 @@ const ExperienceTimeline = ({ experiences }: { experiences: SanityDocument[] }) 
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     viewport={{ once: true }}
                 >
-                    <H2>Experience</H2>
+                    <h2>Experience</h2>
                 </motion.div>
 
                 <div className="relative mt-12">

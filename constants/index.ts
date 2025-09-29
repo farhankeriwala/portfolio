@@ -1,29 +1,30 @@
+import { Home, User, FolderGit2, BriefcaseBusiness, Mail } from "lucide-react";
+
 export const navItems: NavItem[] = [
     {
         href: "/",
         label: "Home",
-        icon: 'home'
+        icon: Home
     },
     {
         href: "/about",
         label: "About",
-        icon: 'user'
-
+        icon: User
     },
     {
         href: "/projects",
         label: "Projects",
-        icon: 'gallery'
+        icon: FolderGit2
     },
     {
         href: "/services",
         label: "Services",
-        icon: 'case'
+        icon: BriefcaseBusiness
     },
     {
         href: "/contact",
         label: "Contact",
-        icon: 'contact'
+        icon: Mail
     },
 ]
 

@@ -9,7 +9,7 @@ const NotFoundPage = () => {
                 <IconSearchOff className="h-12 w-12 text-zinc-400 dark:text-zinc-600" />
                 <h1 className="text-3xl font-semibold text-zinc-800 dark:text-zinc-100">404 – Page Not Found</h1>
                 <p className="text-zinc-600 dark:text-zinc-400 max-w-md">
-                    The page you're looking for doesn't exist or has been moved.
+                    The page you&apos;re looking for doesn&apos;t exist or has been moved.
                 </p>
                 <Link
                     href="/"

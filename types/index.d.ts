@@ -1,7 +1,7 @@
 declare interface NavItem {
     href: string;
     label: string;
-    icon: string;
+    icon: import("lucide-react").LucideIcon;
 }
 
 declare interface SocialMediaItem {

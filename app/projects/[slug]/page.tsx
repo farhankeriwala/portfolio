@@ -8,8 +8,6 @@ import {Button} from "@/components/ui/button";
 import {urlFor} from "@/lib/sanity/imageUrl";
 import Image from "next/image";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
-import H2 from "@/components/typography/headings/H2";
-import H1 from "@/components/typography/headings/H1";
 import type { Metadata } from "next";
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -59,12 +57,12 @@ const Page = async ({params}: { params: Promise<{ slug: string }> }) => {
         <section className="relative w-full min-h-screen py-16 px-6 md:px-12">
             <div className="max-w-5xl mx-auto space-y-20">
                 <div className="text-center">
-                    <H1>{project?.title}</H1>
+                    <h1>{project?.title}</h1>
                 </div>
 
                 {/* Description */}
                 <section className="space-y-4">
-                    <H2>Description</H2>
+                    <h2>Description</h2>
                     <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
                         {project?.description}
                     </p>
@@ -72,7 +70,7 @@ const Page = async ({params}: { params: Promise<{ slug: string }> }) => {
 
                 {/* Features */}
                 <section className="space-y-4">
-                    <H2>Features</H2>
+                    <h2>Features</h2>
                     <ul className="list-disc list-inside space-y-2 text-base md:text-lg text-zinc-700 dark:text-zinc-300">
                         {project?.features.map((feature: Feature) => (
                             <li key={feature.name}>
@@ -84,9 +82,9 @@ const Page = async ({params}: { params: Promise<{ slug: string }> }) => {
 
                 {/* Tech Stack */}
                 <section className="space-y-6">
-                    <H2>Technologies</H2>
+                    <h2>Technologies</h2>
                     <div className="flex flex-wrap items-center justify-center gap-6">
-                        {project?.techStack.map((tech: any, index: number) => (
+                        {project?.techStack.map((tech: { image: { asset: any }; name: string }, index: number) => (
                             <TooltipProvider key={index}>
                                 <Tooltip delayDuration={200}>
                                     <TooltipTrigger asChild>
@@ -116,7 +114,7 @@ const Page = async ({params}: { params: Promise<{ slug: string }> }) => {
                 {/* Links */}
                 {project?.github && (
                     <section className="space-y-4">
-                        <H2>Links</H2>
+                        <h2>Links</h2>
                         <p className={"text-xm text-muted-foreground"}>Hover over the following links for a quick preview</p>
                         <div className="grid gap-6 md:grid-cols-2">
                             {project?.url && (
@@ -137,7 +135,7 @@ const Page = async ({params}: { params: Promise<{ slug: string }> }) => {
 
                 {/* Images */}
                 <section className="space-y-4">
-                    <H2>Images</H2>
+                    <h2>Images</h2>
                     <div className="rounded-xl overflow-hidden border border-white/10 dark:border-white/10">
                         <Carousel images={project?.images}/>
                     </div>

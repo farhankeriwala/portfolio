@@ -4,15 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import {getProjects} from "@/lib/utils";
 import {urlFor} from "@/lib/sanity/imageUrl";
-import H1 from "@/components/typography/headings/H1";
 
 const Page = async () => {
     const projects = await getProjects();
     return (
         <section className="container p-4">
-            <H1>
+            <h1>
                 Projects
-            </H1>
+            </h1>
             <div className={"grid grid-cols-1 xl:grid-cols-2"}>
                 {projects!.map((project) => (
                     <CardContainer key={project.slug + project.description} className="inter-var">

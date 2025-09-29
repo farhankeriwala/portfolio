@@ -1,22 +1,19 @@
 'use client';
 
 import React from 'react';
-import H1 from "@/components/typography/headings/H1";
-import H2 from "@/components/typography/headings/H2";
-import H3 from "@/components/typography/headings/H3";
 import Link from "next/link";
 
 const Page: React.FC = () => {
     return (
         <div className="mx-auto container max-w-4xl px-6 py-12">
-            <H1>Privacy Policy</H1>
+            <h1>Privacy Policy</h1>
 
             <p className="text-base text-zinc-700 dark:text-white mb-6">
                 <strong>Effective Date:</strong> Sunday 1st June 2025
             </p>
 
             <section className="mb-10">
-                <H2>1. Introduction</H2>
+                <h2>1. Introduction</h2>
                 <p className="text-base text-zinc-700 dark:text-white">
                     Farhan Keriwala respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how information submitted through the portfolio website at{' '}
                     <Link href="https://www.farhankeriwa la.com" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
@@ -27,8 +24,8 @@ const Page: React.FC = () => {
             </section>
 
             <section className="mb-10">
-                <H2>2. Information Collected</H2>
-                <H3>2.1 Information You Provide</H3>
+                <h2>2. Information Collected</h2>
+                <h3>2.1 Information You Provide</h3>
                 <p className="text-base text-zinc-700 dark:text-white">
                     When you submit a contact form, the following information may be collected:
                 </p>
@@ -40,7 +37,7 @@ const Page: React.FC = () => {
             </section>
 
             <section className="mb-10">
-                <H2>3. How Your Information Is Used</H2>
+                <h2>3. How Your Information Is Used</h2>
                 <p className="text-base text-zinc-700 dark:text-white">
                     Your information is used exclusively for the following purposes:
                 </p>
@@ -54,14 +51,14 @@ const Page: React.FC = () => {
             </section>
 
             <section className="mb-10">
-                <H2>4. Data Sharing</H2>
+                <h2>4. Data Sharing</h2>
                 <p className="text-base text-zinc-700 dark:text-white">
                     No personal data is sold or shared with third parties. All submitted information is treated as confidential and used only as outlined in this policy.
                 </p>
             </section>
 
             <section className="mb-10">
-                <H2>5. Data Retention</H2>
+                <h2>5. Data Retention</h2>
                 <p className="text-base text-zinc-700 dark:text-white">
                     Contact form submissions are retained only for as long as necessary to respond to your request. To request removal of your data, please email{' '}
                     <a className="text-blue-600 hover:underline" href="mailto:contact@farhankeriwala.com">
@@ -71,7 +68,7 @@ const Page: React.FC = () => {
             </section>
 
             <section className="mb-10">
-                <H2>6. Your Rights</H2>
+                <h2>6. Your Rights</h2>
                 <p className="text-base text-zinc-700 dark:text-white">
                     In accordance with data protection laws, you may:
                 </p>
@@ -89,14 +86,14 @@ const Page: React.FC = () => {
             </section>
 
             <section className="mb-10">
-                <H2>7. Security</H2>
+                <h2>7. Security</h2>
                 <p className="text-base text-zinc-700 dark:text-white">
                     Reasonable security measures are in place to protect your data from unauthorized access or misuse. However, no method of data transmission over the internet is 100% secure.
                 </p>
             </section>
 
             <section className="mb-10">
-                <H2>8. Updates to This Policy</H2>
+                <h2>8. Updates to This Policy</h2>
                 <p className="text-base text-zinc-700 dark:text-white">
                     This policy may be updated periodically to reflect changes in practice or legal requirements. Updates will be posted on this page with the new effective date.
                 </p>

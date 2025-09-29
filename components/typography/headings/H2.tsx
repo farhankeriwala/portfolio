@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { bricolageGrotesque } from "@/fonts/bricolageGrotesque";
 
 const H2 = ({ children }: { children: ReactNode }) => {
     return (
