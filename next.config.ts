@@ -32,36 +32,36 @@ const nextConfig: NextConfig = {
     },
     async redirects() {
         return [
-            // {
-            //     source: "/",
-            //     destination: "/maintenance",
-            //     permanent: false,
-            // },
-            // {
-            //     source: "/about",
-            //     destination: "/maintenance",
-            //     permanent: false,
-            // },
-            // {
-            //     source: "/projects",
-            //     destination: "/maintenance",
-            //     permanent: false,
-            // },
-            // {
-            //     source: "/services",
-            //     destination: "/maintenance",
-            //     permanent: false,
-            // },
-            // {
-            //     source: "/contact",
-            //     destination: "/maintenance",
-            //     permanent: false,
-            // },
-            // {
-            //     source: "/privacy-policy",
-            //     destination: "/maintenance",
-            //     permanent: false,
-            // },
+            {
+                source: "/",
+                destination: "/maintenance",
+                permanent: false,
+            },
+            {
+                source: "/about",
+                destination: "/maintenance",
+                permanent: false,
+            },
+            {
+                source: "/projects",
+                destination: "/maintenance",
+                permanent: false,
+            },
+            {
+                source: "/services",
+                destination: "/maintenance",
+                permanent: false,
+            },
+            {
+                source: "/contact",
+                destination: "/maintenance",
+                permanent: false,
+            },
+            {
+                source: "/privacy-policy",
+                destination: "/maintenance",
+                permanent: false,
+            },
         ];
     },
 };
