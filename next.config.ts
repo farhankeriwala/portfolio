@@ -1,19 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
     typescript: {
-        ignoreBuildErrors: true, // Ignores TypeScript build errors
+        ignoreBuildErrors: true,
     },
-
     eslint: {
-        ignoreDuringBuilds: true, // Ignores ESLint build errors
+        ignoreDuringBuilds: true,
     },
     images: {
-        domains: [
-            "api.microlink.io", // Microlink Image Preview
-        ],
-
+        domains: ["api.microlink.io"],
         remotePatterns: [
             {
                 protocol: "https",
@@ -30,35 +25,11 @@ const nextConfig: NextConfig = {
         ],
         dangerouslyAllowSVG: true,
     },
+
     async redirects() {
         return [
             {
-                source: "/",
-                destination: "/maintenance",
-                permanent: false,
-            },
-            {
-                source: "/about",
-                destination: "/maintenance",
-                permanent: false,
-            },
-            {
-                source: "/projects",
-                destination: "/maintenance",
-                permanent: false,
-            },
-            {
-                source: "/services",
-                destination: "/maintenance",
-                permanent: false,
-            },
-            {
-                source: "/contact",
-                destination: "/maintenance",
-                permanent: false,
-            },
-            {
-                source: "/privacy-policy",
+                source: "/((?!maintenance).*)", // Match everything except /maintenance
                 destination: "/maintenance",
                 permanent: false,
             },
