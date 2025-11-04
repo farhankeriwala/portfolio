@@ -28,11 +28,16 @@ const nextConfig: NextConfig = {
 
     async redirects() {
         return [
+            // {
+            //     source: "/((?!maintenance).*)",
+            //     destination: "/maintenance",
+            //     permanent: false,
+            // },
             {
-                source: "/((?!maintenance).*)", // Match everything except /maintenance
-                destination: "/maintenance",
-                permanent: false,
-            },
+                source: "/contact",
+                destination: "/",
+                permanent: true,
+            }
         ];
     },
 };
