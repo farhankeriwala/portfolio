@@ -21,11 +21,11 @@ export const navItems: NavItem[] = [
         label: "Services",
         icon: BriefcaseBusiness
     },
-    {
-        href: "/contact",
-        label: "Contact",
-        icon: Mail
-    },
+    // {
+    //     href: "/contact",
+    //     label: "Contact",
+    //     icon: Mail
+    // },
 ]
 
 export const socialMediaItems: SocialMediaItem[] = [
