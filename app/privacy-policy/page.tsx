@@ -9,7 +9,7 @@ const Page: React.FC = () => {
             <h1>Privacy Policy</h1>
 
             <p className="text-base text-zinc-700 dark:text-white mb-6">
-                <strong>Effective Date:</strong> 1 June 2025
+                <strong>Effective Date:</strong> 4th November 2025
             </p>
 
             <section className="mb-10">
