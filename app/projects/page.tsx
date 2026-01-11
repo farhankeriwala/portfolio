@@ -9,9 +9,14 @@ const Page = async () => {
     const projects = await getProjects();
     return (
         <section className="container p-4">
-            <h1>
-                Projects
-            </h1>
+            <div className="max-w-7xl mx-auto text-center mb-12">
+                <h1 className="text-4xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">
+                    Projects
+                </h1>
+                <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+                    A showcase of my work, highlighting my skills in web development, AI integration, and SaaS product creation.
+                </p>
+            </div>
             <div className={"grid grid-cols-1 xl:grid-cols-2"}>
                 {projects!.map((project) => (
                     <CardContainer key={project.slug + project.description} className="inter-var">

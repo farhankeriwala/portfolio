@@ -2,7 +2,19 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { IconBriefcase, IconCode, IconMoodHappy } from "@tabler/icons-react";
+import { IconBriefcase, IconCode, IconMoodHappy, IconStarFilled } from "@tabler/icons-react";
+
+const Stars: React.FC<{ count?: number; size?: number }> = ({ count = 5, size = 28 }) => (
+    <span className="inline-flex items-center justify-center gap-1" aria-label={`${count} out of 5 stars`}>
+    {Array.from({ length: count }).map((_, i) => (
+        <IconStarFilled
+            key={i}
+            style={{ width: size, height: size }}
+            className="text-yellow-500 dark:text-yellow-400"
+        />
+    ))}
+  </span>
+);
 
 const stats = [
     {
@@ -14,7 +26,7 @@ const stats = [
     },
     {
         title: "Years experience",
-        value: 5,
+        value: 6,
         label: "5+",
         icon: <IconBriefcase className="h-10 w-10 text-green-600 dark:text-green-400" />,
         description: "Hands-on development across web, backend, AI, and cloud systems.",
@@ -22,7 +34,7 @@ const stats = [
     {
         title: "Client satisfaction",
         value: 5,
-        label: "★ ★ ★ ★ ★",
+        label: "5-stars",
         icon: <IconMoodHappy className="h-10 w-10 text-yellow-500 dark:text-yellow-400" />,
         description: "Consistent praise for delivery, clarity and long-term support.",
     },
@@ -38,18 +50,20 @@ function useCountUp(target: number, duration = 800, enabled = true) {
             setValue(target);
             return;
         }
+
         startRef.current = null;
+
         const step = (timestamp: number) => {
             if (!startRef.current) startRef.current = timestamp;
             const elapsed = timestamp - startRef.current!;
             const t = Math.min(1, elapsed / duration);
             const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic-ish
             setValue(Math.round(target * eased));
-            if (t < 1) {
-                rafRef.current = requestAnimationFrame(step);
-            }
+            if (t < 1) rafRef.current = requestAnimationFrame(step);
         };
+
         rafRef.current = requestAnimationFrame(step);
+
         return () => {
             if (rafRef.current) cancelAnimationFrame(rafRef.current);
         };
@@ -58,7 +72,7 @@ function useCountUp(target: number, duration = 800, enabled = true) {
     return value;
 }
 
-/* StatCard: a separate component so hooks are called at top level of a component */
+/* StatCard: separate component so hooks are called at top level */
 const StatCard: React.FC<{
     stat: typeof stats[number];
     animateNumbers: boolean;
@@ -66,12 +80,30 @@ const StatCard: React.FC<{
     idx: number;
 }> = ({ stat, animateNumbers, reduceMotion, idx }) => {
     const isNumeric = typeof stat.value === "number";
-    // useCountUp is called at the top level of this component — valid
     const numericValue = useCountUp(Number(stat.value), 900, animateNumbers && isNumeric);
+
+    // stable, valid id (no spaces)
+    const id = useMemo(
+        () => `stat-${stat.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+        [stat.title]
+    );
+
+    const valueNode =
+        stat.title === "Client satisfaction" ? (
+            <Stars />
+        ) : isNumeric ? (
+            // Use the label text for display, but animate toward the numeric value (no forced "+")
+            animateNumbers ? (
+                <span aria-label={stat.label}>{numericValue}</span>
+            ) : (
+                stat.label
+            )
+        ) : (
+            stat.label
+        );
 
     return (
         <motion.div
-            key={stat.title}
             className="rounded-2xl p-6 bg-white/30 dark:bg-zinc-800/20 backdrop-blur-md border border-white/10 dark:border-white/10 shadow-md hover:shadow-lg transition-all duration-250 focus-within:shadow-lg"
             whileHover={reduceMotion ? undefined : { translateY: -4 }}
             initial={reduceMotion ? undefined : { opacity: 0, y: 8 }}
@@ -82,20 +114,22 @@ const StatCard: React.FC<{
             <div
                 tabIndex={0}
                 role="group"
-                aria-labelledby={`stat-${stat.title}`}
+                aria-labelledby={id}
                 className="flex flex-col items-center text-center gap-4 outline-none focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded-lg"
             >
                 <div className="flex items-center justify-center">{stat.icon}</div>
 
                 <dd className="text-4xl sm:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-                    {isNumeric ? (animateNumbers ? `${numericValue}+` : stat.label) : stat.label}
+                    {valueNode}
                 </dd>
 
-                <dt id={`stat-${stat.title}`} className="text-lg font-semibold text-zinc-700 dark:text-zinc-300">
+                <dt id={id} className="text-lg font-semibold text-zinc-700 dark:text-zinc-300">
                     {stat.title}
                 </dt>
 
-                <p className="text-sm text-zinc-500 dark:text-zinc-300 max-w-[28ch]">{stat.description}</p>
+                <p className="text-sm text-zinc-500 dark:text-zinc-300 max-w-[28ch]">
+                    {stat.description}
+                </p>
             </div>
         </motion.div>
     );
@@ -103,7 +137,10 @@ const StatCard: React.FC<{
 
 export const MyStatistics: React.FC = () => {
     const reduceMotion = useReducedMotion();
-    const numericStats = useMemo(() => stats.map((s) => ({ ...s, isNumeric: typeof s.value === "number" })), []);
+    const enrichedStats = useMemo(
+        () => stats.map((s) => ({ ...s, isNumeric: typeof s.value === "number" })),
+        []
+    );
 
     return (
         <section className="relative py-20 px-6 lg:px-12">
@@ -111,7 +148,9 @@ export const MyStatistics: React.FC = () => {
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-6">
                     <div className="flex items-center gap-4">
                         <div>
-                            <h2 className="text-3xl md:text-4xl font-semibold text-zinc-900 dark:text-zinc-100">Track Record</h2>
+                            <h2 className="text-3xl md:text-4xl font-semibold text-zinc-900 dark:text-zinc-100">
+                                Track Record
+                            </h2>
                             <p className="text-zinc-600 dark:text-zinc-400 mt-1 max-w-xl">
                                 A snapshot of the impact and experience I bring to every project.
                             </p>
@@ -126,11 +165,11 @@ export const MyStatistics: React.FC = () => {
                     transition={{ duration: 0.45 }}
                     viewport={{ once: true }}
                 >
-                    {numericStats.map((stat, idx) => (
+                    {enrichedStats.map((stat, idx) => (
                         <StatCard
                             key={stat.title}
                             stat={stat as typeof stats[number]}
-                            animateNumbers={!reduceMotion && stat.isNumeric}
+                            animateNumbers={!reduceMotion && stat.isNumeric && stat.title !== "Client satisfaction"}
                             reduceMotion={reduceMotion}
                             idx={idx}
                         />
